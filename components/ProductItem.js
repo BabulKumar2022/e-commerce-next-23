@@ -8,7 +8,7 @@ const ProductItem = ({product}) => {
                 <img
                 src={product.image}   
                 alt={product.name}  
-                className='rounded shadow'      />
+                className='rounded shadow'/>
             </Link>
         <div className="flex flex-col p-5 items-center justify-center">
             <Link href={`/product/${product.slug}`}>

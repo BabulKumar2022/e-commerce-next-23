@@ -1,9 +1,12 @@
 "use client"
+import { Store } from '@/utils/Store'
 import Head from 'next/head'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 
 const Layout = ({title, children}) => {
+  const {state, dispatch} = useContext(Store);
+  const {cart} = state;
   return (
     <>
       <Head>
@@ -15,7 +18,13 @@ const Layout = ({title, children}) => {
                 <nav className='flex px-4 h-12 justify-between shadow-md items-center'>
                     <Link className='text-lg font-bold' href="/"> E-commerce </Link>
                     <div className=''>
-                        <Link href="/cart" className='px-2'> cart </Link>
+                        <Link href="/cart" className='px-2'> cart 
+                        {cart.cartItems.length > 0 && (
+                          <span className='ml-1 rounded-full bg-red-600 px-2 py-1 font-bold text-white'>
+                            {cart.cartItems.reduce((a, c)=> a + c.quantity, 0)}
+                          </span>
+                        )}
+                        </Link>
                         <Link href="/login" className='px-2'> Login</Link>
                     </div>
                 </nav>

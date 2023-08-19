@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React, { useContext } from 'react'
 
 const Layout = ({title, children}) => {
-  const {state, dispatch} = useContext(Store);
+  const {state } = useContext(Store);
   const {cart} = state;
   return (
     <>

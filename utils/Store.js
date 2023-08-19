@@ -18,11 +18,19 @@ function reducer(state, action){
             ): [...state.cart.cartItems, newItem];
             return {...state, cart: {...state.cart, cartItems}}
         }
+        case 'CART_REMOVE_ITEM': {
+            const cartItems = state.cart.cartItems.filter(
+                (item) => item.slug !== action.payload.slug
+            );
+            return {...state, cart: {...state.cart, cartItems}}
+        }
         default:
             return state;
     }
 
 };
+
+
 export function StoreProvider ({children}){
     const [state, dispatch] = useReducer(reducer, initialState);
     const value = {state, dispatch};

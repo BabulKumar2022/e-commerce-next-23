@@ -39,3 +39,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     1. add select box for quantity
     2. handle select box change 
 
+11. Save Cart Items
+    1. install js-cookie package
+    2. save and retrieve cart items in cookies
+

@@ -1,5 +1,20 @@
+import bcrypt from 'bcryptjs';
+
 
 const data = {
+  users: [
+   { name: 'john',
+    email: 'admin@gamil.com',
+    password: bcrypt.hashSync('123456'),
+    isAdmin: true,
+  },
+
+   { name: 'jem',
+    email: 'user@gamil.com',
+    password: bcrypt.hashSync('123456'),
+    isAdmin: false,
+  },
+  ],
     products: [
        {
          name: 'Long Shirt',
@@ -76,5 +91,6 @@ const data = {
 
     ],
 };
-
+// db_user = ecom_next_23
+// db_password = nCgrBRmGhjiCUL8D
 export default data;

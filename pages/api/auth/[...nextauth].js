@@ -1,7 +1,7 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import User from "@/models/User";
 import db from "@/utils/db";
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import bcryptjs from 'bcryptjs';
 
 
@@ -24,7 +24,7 @@ export default NextAuth({
     providers : [
         CredentialsProvider({
             async authorize(credentials){
-                await db.connect();
+                await db.connect(); 
                 const user = await User.findOne({
                     email: credentials.email,
                 });
@@ -33,9 +33,9 @@ export default NextAuth({
                     return {
                         _id: user._id,
                         name: user.name,
-                        email: useReducer.email,
+                        email: user.email,
                         image: 'f',
-                        isAdmin: user.isAdmin,
+                        isAdmin: user.isAdmin, 
                     };
                 }
                 throw new Error('Invalid email or password');

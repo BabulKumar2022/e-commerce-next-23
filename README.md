@@ -61,4 +61,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     3. implement signIn
     4. use signIn in login form
 
+15. Add User Menu
+    1. check user authentication
+    2. install headlessui
+    3. show user menu 
 

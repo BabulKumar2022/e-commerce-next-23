@@ -23,7 +23,7 @@ const ShippingScreen = () => {
         >
           <h1 className='md-4 text-xl'>Shipping</h1>
           <div className="md-4">
-            <label htmlFor="fulName">Full Name</label>
+            <label htmlFor="fullName">Full Name</label>
             <input className='w-full' 
             id="fullName"
             autoFocus
@@ -31,12 +31,36 @@ const ShippingScreen = () => {
             {errors.fullName && ( <div className='text-red-500'>{errors.fullName.message}</div>)}
           </div>
           <div className="md-4">
-            <label htmlFor="fulName">Address</label>
+            <label htmlFor="address">Address</label>
             <input className='w-full' 
             id="address"
             autoFocus
             {...register('address', {required: "Please enter address", minLength: {value: 3,message: 'Address is more than 2 char'}})}/>
-            {errors.fullName && ( <div className='text-red-500'>{errors.address.message}</div>)}
+            {errors.address && ( <div className='text-red-500'>{errors.address.message}</div>)}
+          </div>
+          <div className="md-4">
+            <label htmlFor="city">City Name</label>
+            <input className='w-full' 
+            id="city"
+            autoFocus
+            {...register('city', {required: "Please enter city name"})}/>
+            {errors.city && ( <div className='text-red-500'>{errors.fullName.message}</div>)}
+          </div>
+          <div className="md-4"> 
+            <label htmlFor="postalCode">Postal code</label>
+            <input className='w-full' 
+            id="postalCode"
+            autoFocus
+            {...register('postalCode', {required: "Please enter city name"})}/>
+            {errors.city && ( <div className='text-red-500'>{errors.city.message}</div>)}
+          </div>
+          <div className="md-4"> 
+            <label htmlFor="country">Country</label>
+            <input className='w-full' 
+            id="country"
+            autoFocus
+            {...register('country', {required: "Please enter country"})}/>
+            {errors.country && ( <div className='text-red-500'>{errors.country.message}</div>)}
           </div>
         </from>
     </Layout>

@@ -64,9 +64,9 @@ const Layout = ({title, children}) => {
                                       </DropdownLink>
                                     </Menu.Item>
                                     <Menu.Item>
-                                      <DropdownLink onDoubleClick={logoutClickHandler} className='dropdown-link' href='/login'>
+                                      <Link onClick={logoutClickHandler} className='dropdown-link' href='/#'>
                                          Logout
-                                      </DropdownLink>
+                                      </Link>
                                     </Menu.Item>
                                   </Menu.Items>
                               </Menu>

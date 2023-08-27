@@ -1,9 +1,12 @@
+import React, { useContext, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import CheckOutWizard from '@/components/CheckOutWizard';
 import Layout from '@/components/Layout';
 import { Store } from '@/utils/Store';
 import Cookies from 'js-cookie';
-import React, { useContext, useEffect } from 'react'
-import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+
+
 
 const ShippingScreen = () => {
   const {
@@ -16,13 +19,14 @@ const ShippingScreen = () => {
   const {state, dispatch} = useContext(Store);
   const {cart} = state;
   const {shippingAddress} = cart;
+  const router = useRouter();
 
   useEffect(() => {
     setValue('fullName', shippingAddress.fullName);
-    // setValue('address', shippingAddress.address);
-    // setValue('city', shippingAddress.city);
-    // setValue('postalCode', shippingAddress.postalCode);
-    // setValue('country', shippingAddress.country);
+    setValue('address', shippingAddress.address);
+    setValue('city', shippingAddress.city);
+    setValue('postalCode', shippingAddress.postalCode);
+    setValue('country', shippingAddress.country);
   },[setValue, shippingAddress]);
 
   const submitHandler = ({fullName, address, city, postalCode, country}) =>{
@@ -44,7 +48,8 @@ const ShippingScreen = () => {
         },
       })
     );
-  }
+    router.push('/payment');
+  };
   return (
     <Layout title="Shipping Address">
         <CheckOutWizard activeStep={1}/>
@@ -99,5 +104,7 @@ const ShippingScreen = () => {
     </Layout>
   )
 }
+
+ShippingScreen.auth = true;
 
 export default ShippingScreen;

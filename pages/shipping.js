@@ -1,6 +1,8 @@
 import CheckOutWizard from '@/components/CheckOutWizard';
 import Layout from '@/components/Layout';
-import React from 'react'
+import { Store } from '@/utils/Store';
+import Cookies from 'js-cookie';
+import React, { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 
 const ShippingScreen = () => {
@@ -8,17 +10,45 @@ const ShippingScreen = () => {
     handleSubmit,
     register,
     formState: {errors},
-    setValue,
-    getValue
-
+    setValue
   } = useForm();
-  const submitHandler = () =>{
 
+  const {state, dispatch} = useContext(Store);
+  const {cart} = state;
+  const {shippingAddress} = cart;
+
+  useEffect(() => {
+    setValue('fullName', shippingAddress.fullName);
+    // setValue('address', shippingAddress.address);
+    // setValue('city', shippingAddress.city);
+    // setValue('postalCode', shippingAddress.postalCode);
+    // setValue('country', shippingAddress.country);
+  },[setValue, shippingAddress]);
+
+  const submitHandler = ({fullName, address, city, postalCode, country}) =>{
+    dispatch({
+      type: 'SAVE_SHIPPING_ADDRESS',
+      payload: { fullName, address, city, postalCode, country},
+
+    });
+    Cookies.set(
+      'cart',
+      JSON.stringify({
+        ...cart,
+        shippingAddress: {
+          fullName,
+          address,
+          city,
+          postalCode,
+          country
+        },
+      })
+    );
   }
   return (
     <Layout title="Shipping Address">
         <CheckOutWizard activeStep={1}/>
-        <from className="mx-auto max-w-screen-md"
+        <form className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
         >
           <h1 className='md-4 text-xl'>Shipping</h1>
@@ -52,7 +82,7 @@ const ShippingScreen = () => {
             id="postalCode"
             autoFocus
             {...register('postalCode', {required: "Please enter city name"})}/>
-            {errors.city && ( <div className='text-red-500'>{errors.city.message}</div>)}
+            {errors.postalCode && ( <div className='text-red-500'>{errors.city.message}</div>)}
           </div>
           <div className="md-4"> 
             <label htmlFor="country">Country</label>
@@ -62,7 +92,10 @@ const ShippingScreen = () => {
             {...register('country', {required: "Please enter country"})}/>
             {errors.country && ( <div className='text-red-500'>{errors.country.message}</div>)}
           </div>
-        </from>
+          <div className="mt-4 flex justify-between">
+              <button className='primary-button'>Next</button>
+          </div>
+        </form>
     </Layout>
   )
 }

@@ -74,3 +74,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     1. display payment methods
     2. save payment method in context 
 
+18. Seed sample products
+    1. insert sample products to MDB
+    2. load products from db in home and product screen
+    3. check product count stock in add to cart
+

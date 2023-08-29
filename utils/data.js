@@ -30,7 +30,7 @@ const data = {
         },
        {
          name: 'Fit Shirt',
-         slug: 'long shirt',
+         slug: 'mid shirt',
          category: 'Shirt',
          image: '/images/shirt2.jpg',
          price: 40,

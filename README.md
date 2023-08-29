@@ -79,3 +79,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     2. load products from db in home and product screen
     3. check product count stock in add to cart
 
+19. Load Products MongoDB
+    1. load products in home page from mongodb
+    2. Load products in product page from mongoDB
+    3. use product api to check count in stock in add to cart
+

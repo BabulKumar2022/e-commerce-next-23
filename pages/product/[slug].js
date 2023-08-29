@@ -1,17 +1,19 @@
 import Layout from '@/components/Layout';
+import Product from '@/models/Product';
 import { Store } from '@/utils/Store';
 import data from '@/utils/data';
+import db from '@/utils/db';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react'
 
-const ProductScreen = () => {
+const ProductScreen = (props) => {
+    const {product} = props;
     const {state, dispatch} = useContext(Store)
-    // const router = useRouter();
-    const {query} = useRouter();
-    const {slug} = query;
-    const product =  data.products.find(x => x.slug === slug)
+    const router = useRouter();
+
+ 
     if(!product){
         return <div > Product not found</div>
     }
@@ -67,6 +69,20 @@ const ProductScreen = () => {
     </div>
    </Layout>
   )
+}
+
+export async function getServerSideProps(context){
+    const {params} = context;
+    const {slug} = params;
+
+    await db.connect();
+    products = await Product.find({slug}).lean();
+    await db.disconnect();
+    return {
+        props: {
+          products: products ? db.convertDocToOnj(product) : null,
+        },
+      };
 }
 
 export default ProductScreen;

@@ -1,5 +1,6 @@
-import Product from "@/models/Product";
+// import Product from "@/models/Product";
 
+const { default: Product } = require("@/models/Product");
 const { default: User } = require("@/models/User");
 const { default: data } = require("@/utils/data");
 const { default: db } = require("@/utils/db")

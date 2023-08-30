@@ -1,20 +1,48 @@
 import Layout from "@/components/Layout";
 import ProductItem from "@/components/ProductItem";
 import Product from "@/models/Product";
+import { Store } from "@/utils/Store";
 // import data from "@/utils/data";
 import db from "@/utils/db";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { toast } from "react-toastify";
 
 
 
 
-export default function Home({product}) {
+export default function Home({products}) {
+
+  const {state, dispatch} = useContext(Store);
+  const { cart} = state;
+  // const router = useRouter();
+
+  const addToCartHandler = async (product) =>{
+    const existItem = cart.cartItems.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`)
+  
+ 
+    if(data.countInStock < quantity){
+      return toast.error("Sorry. Product is out of stock");
+        
+    }
+    dispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}})
+    // router.push('/cart');
+    toast.success('Product added to the cart')
+}
   return (
     <Layout title="Home Page">
      
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {
-        product.map((product) => (
-           <ProductItem product ={product} key={product.slug}></ProductItem>
+        products.map((product) => (
+           <ProductItem
+            product ={product}
+             key={product.slug}
+             addToCartHandler = {addToCartHandler}
+             ></ProductItem>
           ))
         }
       </div>
@@ -23,12 +51,12 @@ export default function Home({product}) {
 }
 
 
-export async function getServerSideProps({product}){
+export async function getServerSideProps(){
   await db.connect();
-    product = await Product.find().lean();
+  let products = await Product.find().lean();
   return {
     props: {
-      product: product.map(db.convertDocToOnj),
-    },
-  };
+      products: products.map(db.convertDocToOnj),
+    }, 
+  }; 
 }

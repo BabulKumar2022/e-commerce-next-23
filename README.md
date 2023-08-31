@@ -84,3 +84,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     2. Load products in product page from mongoDB
     3. use product api to check count in stock in add to cart
 
+20. Create Place Order Screen
+    1. display shipping
+    2. display payment method
+    3. implement create order

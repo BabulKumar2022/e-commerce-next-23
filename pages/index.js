@@ -30,7 +30,7 @@ export default function Home({products}) {
     }
     dispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}})
     // router.push('/cart');
-    toast.success('Product added to the cart')
+    toast.success('Product updated to the cart')
 }
   return (
     <Layout title="Home Page">

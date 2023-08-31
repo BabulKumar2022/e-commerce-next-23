@@ -7,6 +7,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 
 const PaymentScreen = () => {
+
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
     const {state, dispatch} = useContext(Store);
@@ -51,12 +52,13 @@ const PaymentScreen = () => {
                             className='p-2 outline-none focus:ring-0'
                             id={payment}                             
                             type="radio" 
-                            checked = {selectedPaymentMethod === payment}
+                            // checked = {selectedPaymentMethod === payment}
                             onChange = {() =>  selectedPaymentMethod(payment)}
                              />
                              <label className='p-2' htmlFor={payment}>{payment}</label>
                         </div>
                     ))}
+                     
                     <div className="mb-4 flex justify-between">
                         <button onClick={() => router.push('/shipping')}
                         type='button'
@@ -64,7 +66,7 @@ const PaymentScreen = () => {
                         >
                             Back
                         </button>
-                        <button className='primary-button'>Next</button>
+                        <button className='primary-button' href="/placeOrder">Next</button>
                     </div>
 
             </form>

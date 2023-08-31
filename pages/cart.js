@@ -22,11 +22,12 @@ const CartScreen = () => {
     const updateCartHandler = async (item, qty) =>{
     const quantity = Number(qty);
     const { data} = await axios.get(`/api/product/${item._id}`)
+   
     if(data.countInStock < quantity){
-      toast.error('Sorry. Product is out of stock');
+      return toast.error('Sorry. Product is out of stock');
     }
     dispatch({type: 'CART_ADD_ITEM', payload:{...item, quantity}})
-
+      return toast.success('Product added to the cart')
     }
   return (
     <Layout title="Shopping Cart">

@@ -27,7 +27,7 @@ const CartScreen = () => {
       return toast.error('Sorry. Product is out of stock');
     }
     dispatch({type: 'CART_ADD_ITEM', payload:{...item, quantity}})
-      return toast.success('Product added to the cart')
+      return toast.success('Product updated to the cart')
     }
   return (
     <Layout title="Shopping Cart">

@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 const PaymentScreen = () => {
 
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(' ');
 
     const {state, dispatch} = useContext(Store);
     const {cart} = state;
@@ -21,7 +21,7 @@ const PaymentScreen = () => {
         if(!selectedPaymentMethod){
          return   toast.error('Payment method is required')
         }
-        dispatch({type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod});
+        dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod});
         
         Cookies.set(
             'cart',
@@ -32,12 +32,12 @@ const PaymentScreen = () => {
           );
           router.push('/placeOrder');
     }
-    useEffect(()=>{
+    useEffect(() => {
         if(!shippingAddress.address){
            return router.push('/shipping')
         }
-        setSelectedPaymentMethod(paymentMethod || '')
-    },[paymentMethod, router, shippingAddress.address]);
+        setSelectedPaymentMethod(paymentMethod || ' ');
+    }, [paymentMethod, router, shippingAddress.address]);
     
   return (
     <Layout title='Payment Method'>
@@ -53,7 +53,7 @@ const PaymentScreen = () => {
                             id={payment}                             
                             type="radio" 
                             // checked = {selectedPaymentMethod === payment}
-                            onChange = {() =>  selectedPaymentMethod(payment)}
+                            // onChange = {() =>  selectedPaymentMethod(payment)}
                              />
                              <label className='p-2' htmlFor={payment}>{payment}</label>
                         </div>

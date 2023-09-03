@@ -18,10 +18,10 @@ const CartScreen = () => {
       dispatch({type: 'CART_REMOVE_ITEM', payload: item})
 
     }
-    //dandler
+    //handler
     const updateCartHandler = async (item, qty) =>{
     const quantity = Number(qty);
-    const { data} = await axios.get(`/api/product/${item._id}`)
+    const { data} = await axios.get(`/api/products/${item._id}`)
    
     if(data.countInStock < quantity){
       return toast.error('Sorry. Product is out of stock');

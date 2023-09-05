@@ -84,5 +84,5 @@ const PlaceOrderScreen = () => {
     </Layout>
   )
 }
-// PaymentScreen.auth = true;
+PlaceOrderScreen.auth = true;
 export default PlaceOrderScreen;

@@ -88,3 +88,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     1. display shipping
     2. display payment method
     3. implement create order
+
+21. Create Order Screen
+    1. implement backend api for order details
+    2. load order data from backend
+    3. display order detail

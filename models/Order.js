@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema(
         paymentMethod: {type: String, required: true},
         itemsPrice: {type: Number, required: true},
         paymentMethod: {type: Number, required: true},
-       taxPrice: {type: Number, required: true},
+        taxPrice: {type: Number, required: true},
         totalPrice: {type: Number, required: true},
         isPaid: {type: Boolean, required: true, default: false},
         isDelivered: {type: Boolean, required: true, default: false},
